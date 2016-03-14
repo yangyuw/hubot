@@ -4,7 +4,7 @@
 ############################################################
 
 # Pull base image.
-FROM node:latest
+FROM ubuntu:latest
 MAINTAINER andrew <yu.yang2@hpe.com>
 ENV http_proxy=http://proxy.houston.hpecorp.net:8080 https_proxy=https://proxy.houston.hpecorp.net:8080
 
@@ -16,7 +16,7 @@ ENV HUBOT_DESCRIPTION=$HUBOT_NAME-$HUBOT_ADAPTER
 RUN apt-get update && apt-get install -y build-essential curl
 
 # install redis
-RUN apt-get install -y redis-server
+RUN apt-get update && apt-get install -y redis-server
 ADD redis/redis.conf /etc/redis/
 VOLUME ["/log/redis", "/data/redis"]
 
@@ -26,7 +26,8 @@ ADD supervisor/ /etc/supervisor/conf.d/
 VOLUME ["/log/supervisor"]
 CMD exec supervisord -n
 
-# Install CoffeeScript, Hubot
+# Install Nodejs, CoffeeScript, Hubot
+RUN curl --silent --location https://deb.nodesource.com/setup_5.x | bash - && apt-get install -y nodejs
 RUN npm install -g hubot coffee-script yo generator-hubot \
     && useradd -m -s /bin/bash hubot
 VOLUME ["/log/hubot"]
