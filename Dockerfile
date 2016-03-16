@@ -20,7 +20,7 @@ ADD supervisor/ /etc/supervisor/conf.d/
 VOLUME ["/log/supervisor"]
 CMD exec supervisord -n
 RUN useradd -d /opt/hubot -m -s /bin/bash -U hubot 
-RUN curl --silent --location https://deb.nodesource.com/setup_5.x | bash - && apt-get install -y nodejs
+RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash - && apt-get install -y nodejs
 RUN npm install -g  yo generator-hubot 
 
 VOLUME ["/log/hubot"]
