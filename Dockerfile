@@ -38,7 +38,6 @@ RUN npm config set proxy=http://proxy.houston.hpecorp.net:8080 && \
 
 ADD hubot/*.json /opt/hubot/
 ADD hubot/hubot.env /opt/hubot/
-ADD hubot/scripts/ /opt/hubot/scripts/
 
 RUN npm install
 
