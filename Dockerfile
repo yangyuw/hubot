@@ -3,7 +3,7 @@
 # AUTHOR: andrew <yu.yang2@hpe.com>
 ############################################################
 
-FROM ubuntu:trusty
+FROM ubuntu:latest
 MAINTAINER andrew <yu.yang2@hpe.com>
 ENV http_proxy=http://proxy.houston.hpecorp.net:8080 https_proxy=http://proxy.houston.hpecorp.net:8080
 
