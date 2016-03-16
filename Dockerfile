@@ -19,7 +19,9 @@ RUN apt-get install -y supervisor
 ADD supervisor/ /etc/supervisor/conf.d/
 VOLUME ["/log/supervisor"]
 CMD exec supervisord -n
-RUN useradd -d /opt/hubot -m -s /bin/bash -U hubot 
+RUN useradd -d /opt/hubot -m -s /bin/bash -U hubot; \
+    echo "hubot ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
 RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash - && apt-get install -y nodejs
 RUN npm install -g  yo generator-hubot 
 
