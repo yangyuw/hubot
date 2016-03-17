@@ -24,8 +24,6 @@ RUN adduser --home /opt/hubot --disabled-password --gecos "" hubot; \
 
 RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash - && apt-get install -y nodejs
 RUN npm install -g  yo generator-hubot 
-
-VOLUME ["/log/hubot"]
 EXPOSE 5555
 
 # Create Hubot
